@@ -1,11 +1,13 @@
+const http=require('node:http');
 const net=require('net');
-const {WebSocket,createWebSocketStream}=require('ws');
+const {WebSocketServer,createWebSocketStream}=require('ws');
 const { TextDecoder } = require('util');
 const logcb= (...args)=>console.log.bind(this,...args);
 const errcb= (...args)=>console.error.bind(this,...args);
 
 const uuid= (process.env.UUID||'8c94dfd8-52dd-451c-8c85-26770cd41768').replace(/-/g, "");
-const port= process.env.PORT||8080;
+const port= process.env.SERVER_PORT||8080;
+
 
 const server = http.createServer();
 const wss = new WebSocketServer({ server });
